@@ -1,3 +1,7 @@
+# Antes de iniciar
+
+Modificia el archivo src/setUrl y cambia el localhost a la direccion que tendra el servidor con el que te comunicaras a la aplicacion
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

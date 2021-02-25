@@ -1,12 +1,32 @@
 import './App.css';
-import axios from 'axios';
 import Login from './components/login/login'
+import Dash from './components/dash/Dash'
+import {useState, useLayoutEffect} from 'react'
 
 function App() {
 
+  const [tab, setTab] = useState(true);
+
+  const checkDate = (token) => {
+    if (Date.now() >= token * 1000) {
+        return false;
+      }else
+        return true;
+}
+
+
+  useLayoutEffect(()=>{
+    let session = JSON.parse(localStorage.getItem('SESSION'));
+    console.log(session);
+    if(session.tokenObj && checkDate(session.tokenObj.expires_at)) setTab(false);
+    else localStorage.removeItem('SESSION');
+  }, [])
+
   return (
     <div className="App">
-      <Login />
+      {tab === true ? (<Login setTab={setTab} />) : null}
+      {tab === false ? (<Dash setTab={setTab}/>) : null }
+
     </div>
   );
 }
