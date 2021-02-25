@@ -1,6 +1,6 @@
 import './App.css';
 import Login from './components/login/login'
-import Dash from './components/dash/Dash'
+import Dash from './components/dash/dash'
 import {useState, useLayoutEffect} from 'react'
 
 function App() {
@@ -18,8 +18,10 @@ function App() {
   useLayoutEffect(()=>{
     let session = JSON.parse(localStorage.getItem('SESSION'));
     console.log(session);
-    if(session.tokenObj && checkDate(session.tokenObj.expires_at)) setTab(false);
-    else localStorage.removeItem('SESSION');
+    if(session){
+      if(session.tokenObj && checkDate(session.tokenObj.expires_at)) setTab(false);
+      else localStorage.removeItem('SESSION');
+    }
   }, [])
 
   return (
